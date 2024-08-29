@@ -53,9 +53,19 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justsify-content-center">
                     <div class="col-md-10">
-                        <p>Documentation updates in DocAider are triggered when a developer opens a Pull Request (PR). The system compares the changes between the last main commit and the branch commit, identifying any modifications that require updates to the documentation. This process involves two specialized agents: an update agent and a reviewer agent. The updating agent receives the old documentation along with the code changes, and then updates the documentation accordingly. The reviewing agent checks the newly updated documentation, making improvements as necessary to ensure accuracy and comprehensiveness.</p>
+                        <p>Once a pull request (PR) is created, the predefined workflow will be triggered. If the changed file already has doc, we just update it. If doc does not exist, we generate one. Then a new commit containing the doc changes will be pushed to that PR. Additionally, the developer can also provide update instructions by making a PR comment. DocAider will process that comment and execute the update instructions. </p>
+                        <h4 style="text-align: center">Updating the Documentation</h4>
+                        <div class="col">
+                            <div class="centered-image-container" style="display: flex; justify-content: center; align-items: center"><img src="assets/Update.png" alt="Updating the Documentation" style="max-width: 80%; height: auto" /></div>
+                        </div>
                         <h4>Recursive Update</h4>
                         <p>To maintain consistency and accuracy across all related documentation when a class/function in a file is changed, the Documentation Update feature performs the update recursively. If a class/function is modified, the system will automatically update the documentation for all dependent files. This includes the documentation of source files that use the changed class/function, as well as the documentation of files that use functions depending on the changed class/function. This recursive updating ensures that all related documentation remains up-to-date with the latest changes in the code.</p>
+                        <h3 style="text-align: center">Recursive Update</h4>
+                        <div class="col">
+                            <div class="centered-image-container" style="display: flex; justify-content: center; align-items: center"><img src="assets/Recursive.png.png" alt="Recursive Update" style="max-width: 80%; height: auto" /></div>
+                        </div>
+                        <p>We create a function relationship graph for performing recursive update. This is a simple example. There are four source files in the repo, main.py, user.py, utils.py, and data_processor.py. The arrows show the dependency relationship of functions. Recursive update happens when a function is changed, the documentation of its caller files will be changed, too.</p>
+
                         <h4>Documentation Update on PR Comment</h4>
                         <p>Documentation update on PR Comment allows reviewers to trigger the documentation updates on specified files by making a comment in a certain format. The reviewer can specify which file needs an update and provide instructions on what changes should be made. The system will then process this comment and update the documentation as instructed. This feature ensures that precise and targeted documentation updates can be made based on reviewer feedback, improving the overall quality and relevance of the documentation. Furthermore, it removes the need for developers to manually change documentation according to reviewers' comments. To use this feature, a template needs to be used, which is as follows:</p>
                         <ul>
