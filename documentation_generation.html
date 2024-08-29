@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Repo-Copilot</title>
+        <title>docAider</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Repo-Copilot</a>
+                <a class="navbar-brand" href="index.html">docAider</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -28,7 +28,6 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="objectives.html">Objectives</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="architecture.html">Architecture</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="documentation_generation.html">Documentation Generation</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="documentation_update.html">Documentation Update</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="team.html">Team</a></li>
@@ -44,27 +43,37 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
                             <h1>Documentation Generation</h1>
-                            <span class="subheading">Repo-Copilot's Documentation Generation.</span>
+                            <span class="subheading">docAider's Documentation Generation.</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <section>
+        <!-- Main Content-->
+        <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <h2 class="margin-bottom-10">Repo-Copilot's Documentation Generation</h2>
-                    <div class="row gx-4 gx-lg-5 justify-content-center margin-top-10">
-                        <p></p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?
-                        <p></p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!
-                        <p></p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!
+                    <div class="col-md-10">
+                        <p>We adopted a multi-agent system, where each agent is responsible for a specific task. Working in a sequential manner, the agents build on the outputs of the previous stages, resulting in more accurate and coherent documentation while reducing hallucinations. By focusing on specific domains and tasks, each agent contributes to the overall accuracy, following a chain–of–thought process.</p>
+                        <h4 style="text-align: center">Multi-Agent System Architecture</h4>
+                        <div class="col">
+                            <div class="centered-image-container" style="display: flex; justify-content: center; align-items: center"><img src="assets/multi_agent_diagram.png" alt="Multi-Agent System Architecture" style="max-width: 80%; height: auto" /></div>
+                        </div>
+                        <p>In our implementation we used several state-of-art Microsoft tools including Microsoft Semantic Kernel and Microsoft Autogen, as well as GPT-4-0125-preview for powering all agents.</p>
+                        <p>The multi-agent conversation, as mentioned, follows a sequential pattern, which means the agents perform a sequence of chats, chained together by a carryover mechanism to complete a task. The carryover, which is the output of the previous chat, is passed to the next chat as the context information so that subsequent agents have the knowledge from previous chats.</p>
+                        <p>The baseline response generated by the documentation generation agent is potentially prone to hallucination. Therefore, we use the LLM self-check mechanism to review and improve the initial documentation, which consists of four steps:</p>
+                        <h4>Generate function relationship data</h4>
+                        <p>This Code Context Agent creates a graph representation of the entire repository, mapping out the relationships between function calls. It then generates comprehensive information about the code by using both the actual source code and the relationship data from the graph related to that source code.</p>
+                        <h4>Generate a baseline documentation</h4>
+                        <p>The Documentation Generation agent generates documentation for the code, taking into account the context explanation returned from the code context agent.</p>
+                        <h4>Review the documentation</h4>
+                        <p>The Review Agent checks the documentation and generates a review report, including comments and improvement suggestions.</p>
+                        <h4>Generate improved documentation</h4>
+                        <p>The Revise Agent receives the review report, modifies the documentation according to the suggestions, and finally returns an improved documentation to the agent manager.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </main>
         <!-- Footer-->
         <footer class="border-top">
             <div class="container px-4 px-lg-5">
@@ -72,7 +81,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="https://github.com/orgs/ucl-repo-copilot/repositories" target="_blank">
+                                <a href="https://github.com/orgs/ucl-docaider/repositories" target="_blank">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -80,7 +89,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic">UCL MSc Software Systems Engineering - Repo-Copilot 2024</div>
+                        <div class="small text-center text-muted fst-italic">UCL MSc Software Systems Engineering - docAider 2024</div>
                     </div>
                 </div>
             </div>
